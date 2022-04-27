@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const userRoute = express.Router()
+const mongoose = require("mongoose");
 
 // Employee model
 let User = require('../models/User')
@@ -29,7 +30,8 @@ userRoute.route('/').get((req, res) => {
 
 // Get single employee
 userRoute.route('/read/:id').get((req, res) => {
-  User.findById(req.params.id, (error, data) => {
+  const idd =mongoose.Types.ObjectId(req.params.id);
+  User.find({_id:idd}, (error, data) => {
     if (error) {
       return next(error)
     } else {

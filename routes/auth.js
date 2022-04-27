@@ -39,8 +39,8 @@ router.post("/login",(req,res) =>{
             }
          })
 })
-router.post("/getProfileDetails",(req,res) =>{ 
-    const {userId} = req.body; 
+router.get("/getProfileDetails/:id,",(req,res) =>{ 
+    const userId = req.params.id; 
     User.findOne({_id:userId},(err,data)=>{
         if(err){
             return res.status(201).json({msg:"Something went wrong"});
